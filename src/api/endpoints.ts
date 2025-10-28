@@ -1,4 +1,4 @@
-const API_DOMAIN = 'https://localhost:7258'; // Dominio base del backend
+const API_DOMAIN = import.meta.env.VITE_API_URL; // Dominio base del backend
 const API_BASE_URL = `${API_DOMAIN}/api`; // URL para los endpoints de la API
 
 export { API_DOMAIN }; // Exportamos el dominio para usarlo en las imágenes
