@@ -1,0 +1,352 @@
+/* Estilos para la página de historial de transacciones, consistentes con UsersManagerPage */
+
+/* Layout Principal */
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.mainContentArea {
+    width: 100%;
+}
+
+.componentCard {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.componentCard:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.componentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.componentTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Barra de Herramientas y Filtros */
+.orderManagementToolbar {
+    margin-bottom: 1.5rem;
+}
+
+.filterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 180px; /* Flex-grow, flex-shrink, base width */
+}
+
+.filterLabel {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.filterInput,
+.filterSelect {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.filterInput:focus,
+.filterSelect:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Tabla de Datos */
+.tableContainer {
+    overflow-x: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.orderDatagrid {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.orderDatagrid th,
+.orderDatagrid td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.orderDatagrid th {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.orderDatagrid tr:last-child td {
+    border-bottom: none;
+}
+
+.orderDatagrid tr:hover {
+    background: var(--bg-color);
+}
+
+.errorText {
+    color: var(--error-color);
+    font-weight: 600;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Insignias de Estado */
+.statusBadge {
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    display: inline-block;
+}
+
+.statusCompleted {
+    background-color: var(--success-light);
+    color: var(--success-color);
+}
+
+.statusProcessing {
+    background-color: var(--warning-light);
+    color: var(--warning-color);
+}
+
+.statusPending {
+    background-color: var(--accent-light);
+    color: var(--accent-color);
+}
+
+.statusCancelled {
+    background-color: #fee2e2; /* Corresponde a error-light */
+    color: var(--error-color);
+}
+
+/* Acciones de la Tabla */
+.orderActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btnDetail {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btnDetail:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Estilos del Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modalOverlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.orderModal {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.3s ease;
+}
+
+.modalOverlay.active .orderModal {
+    transform: translateY(0) scale(1);
+}
+
+.modalHeader {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.closeModal {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.closeModal:hover {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.modalBody {
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.modalSection {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.modalSectionTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+}
+
+.orderInfoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.infoValue {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.productsTable {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+
+.productsTable th,
+.productsTable td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.productsTable th {
+    font-weight: 600;
+    font-size: 0.9rem;
+    background-color: var(--bg-color);
+}
+
+.modalFooter {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnClose {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btnClose:hover {
+    background: var(--bg-color);
+    border-color: var(--text-muted);
+}

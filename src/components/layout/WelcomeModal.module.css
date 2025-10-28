@@ -1,0 +1,63 @@
+/* Keyframes para la animación del spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Keyframes para las animaciones de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal {
+    background: var(--card-bg);
+    color: var(--text-color);
+    padding: 2.5rem 3.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-xl);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    border: 1px solid var(--border-color);
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--text-muted);
+    border-bottom-color: var(--primary-color);
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.5rem;
+}
+
+.message {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+    line-height: 1.4;
+}

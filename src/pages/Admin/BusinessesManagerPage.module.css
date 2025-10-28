@@ -1,0 +1,338 @@
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary-color: #f59e0b;
+    --accent-color: #8b5cf6;
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --error-dark: #dc2626;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --primary-color: #818cf8;
+    --primary-dark: #6366f1;
+    --accent-color: #a78bfa;
+    --success-color: #34d399;
+    --error-dark: #ef4444;
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.componentCard {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.componentCard:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.componentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.componentTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 12px;
+}
+
+.componentTitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+}
+
+.businessManagementToolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.searchContainer {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.searchIcon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.tableContainer {
+    overflow-x: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.businessDatagrid {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.businessDatagrid th,
+.businessDatagrid td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    word-wrap: break-word;
+}
+
+.businessDatagrid th {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+}
+
+.businessDatagrid tr:last-child td {
+    border-bottom: none;
+}
+
+.businessDatagrid tr:hover {
+    background: var(--bg-color);
+}
+
+.businessDatagrid th:nth-child(1), .businessDatagrid td:nth-child(1) { width: 5%; }
+.businessDatagrid th:nth-child(2), .businessDatagrid td:nth-child(2) { width: 15%; }
+.businessDatagrid th:nth-child(3), .businessDatagrid td:nth-child(3) { width: 15%; }
+.businessDatagrid th:nth-child(4), .businessDatagrid td:nth-child(4) { width: 12%; }
+.businessDatagrid th:nth-child(5), .businessDatagrid td:nth-child(5) { width: 12%; }
+.businessDatagrid th:nth-child(6), .businessDatagrid td:nth-child(6) { width: 10%; }
+.businessDatagrid th:nth-child(7), .businessDatagrid td:nth-child(7) { width: 15%; }
+.businessDatagrid th:nth-child(8), .businessDatagrid td:nth-child(8) { width: 16%; }
+
+.businessActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btnDelete {
+    background: var(--card-bg);
+    color: var(--error-color);
+    border: 2px solid var(--error-color);
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.btnDelete:hover {
+    background: var(--error-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btnDelete.confirming {
+    background: var(--error-dark) !important;
+    border-color: var(--error-dark) !important;
+    color: white !important;
+    animation: pulse-red 1.5s infinite;
+}
+
+.btnDelete.btnSaving {
+    background: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+    color: white !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btnDelete.btnSaving::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.statusActive {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.statusInactive {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+.statusPending {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    border: 1px solid var(--warning-color);
+}
+
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+    .businessDatagrid { font-size: 0.9rem; table-layout: auto; }
+    .businessDatagrid th, .businessDatagrid td { padding: 0.75rem 0.5rem; width: auto !important; }
+}
+
+@media (max-width: 900px) {
+    .businessManagementToolbar { flex-direction: column; }
+    .searchContainer { min-width: 100%; }
+}
+
+@media (max-width: 768px) {
+    .componentCard { padding: 1.25rem; }
+    .mainGrid { padding: 1.5rem 0; }
+    .businessDatagrid { font-size: 0.85rem; }
+    .businessDatagrid th, .businessDatagrid td { padding: 0.5rem 0.25rem; }
+    .btnDelete { padding: 0.4rem 0.5rem; font-size: 0.8rem; }
+    .statusBadge { font-size: 0.7rem; padding: 0.2rem 0.5rem; }
+}
+
+@media (max-width: 640px) {
+    .businessDatagrid { font-size: 0.8rem; }
+    .componentHeader { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .businessActions { flex-direction: column; gap: 0.25rem; }
+}
+
+@media (max-width: 480px) {
+    .componentCard { padding: 1rem; }
+    .mainGrid { padding: 1rem 0; }
+    .businessDatagrid { font-size: 0.75rem; }
+    .btnDelete { width: 100%; margin-bottom: 0.25rem; }
+}
+
+@media (max-width: 360px) {
+    .componentCard { padding: 0.75rem; }
+}
+
+.spinnerIcon {
+    animation: spin 1s linear infinite;
+}
+
+.loadingSpinner {
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+/* Notification Styles */
+.notice {
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.noticeSuccess {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.noticeError {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--error-color);
+    color: var(--error-color);
+}

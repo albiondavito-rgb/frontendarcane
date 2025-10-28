@@ -1,0 +1,74 @@
+.businessLayout {
+    display: flex;
+}
+
+.mainContent {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+.header {
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Asegura que se mantenga por encima del contenido */
+    display: flex; /* Usamos flex para alinear el botón y el título */
+    align-items: center;
+}
+
+.menuButton {
+    display: none; /* Oculto por defecto en escritorio */
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.businessTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center;
+    flex-grow: 1; /* El título ocupa el espacio restante */
+}
+
+.contentWrapper {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.backdrop {
+    display: none; /* Oculto en escritorio */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Debajo del sidebar (1000), encima del resto */
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 0;
+    }
+    .menuButton {
+        display: block; /* Visible en móvil */
+    }
+    .businessTitle {
+        text-align: left; /* Alineamos el título a la izquierda en móvil */
+    }
+    .backdrop {
+        display: block;
+    }
+}

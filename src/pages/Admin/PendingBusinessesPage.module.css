@@ -1,0 +1,553 @@
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.componentCard {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.componentCard:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.componentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.componentTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 12px;
+}
+
+.componentTitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+}
+
+/* Notificaciones inline para acciones (éxito / error) */
+.notice {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    font-weight: 600;
+}
+
+.noticeSuccess {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--success-color);
+}
+
+.noticeError {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--error-color);
+}
+
+/* Nuevos estilos para la sección de negocios pendientes */
+.filterTabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    background: var(--bg-color);
+    padding: 6px;
+    border-radius: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Fila de ordenamiento */
+.sortRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 1rem 0;
+}
+
+.sortLabel {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Select reutilizado con estilo consistente */
+.filterSelect {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.filterTab {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.filterTab.active {
+    background: var(--card-bg);
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.filterTab:hover:not(.active) {
+    color: var(--text-color);
+}
+
+.businessGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.businessCard {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.businessCard:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.businessHeader {
+    padding: 1.25rem 1.25rem 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.businessTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.businessId {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.businessStatus {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.statusPending {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning-color);
+}
+
+.statusConfirmed {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success-color);
+}
+
+.statusRejected {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--error-color);
+}
+
+.businessBody {
+    padding: 1rem 1.25rem;
+    flex-grow: 1;
+}
+
+.businessDetail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.detailIcon {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailText {
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.detailLabel {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-right: 4px;
+}
+
+.businessFooter {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.actionBtn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.actionBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.actionBtn:hover::before {
+    left: 100%;
+}
+
+.confirmBtn {
+    background: linear-gradient(135deg, var(--success-color), #059669);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.confirmBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.rejectBtn {
+    background: var(--card-bg);
+    color: var(--error-color);
+    border: 2px solid var(--border-color);
+}
+
+.rejectBtn:hover {
+    background: var(--error-color);
+    color: white;
+    border-color: var(--error-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.actionBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-muted);
+}
+
+.emptyIcon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    background: var(--bg-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.emptyTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.emptyDescription {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilos para el modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modalOverlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.modalOverlay.active .modal {
+    transform: translateY(0);
+}
+
+.modalHeader {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modalClose {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.modalClose:hover {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.modalBody {
+    padding: 1.5rem;
+}
+
+.modalSection {
+    margin-bottom: 1.5rem;
+}
+
+.modalSectionTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modalSectionTitle::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: var(--border-color);
+    margin-left: 0.5rem;
+}
+
+.businessImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.infoLabel {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.infoValue {
+    font-size: 1rem;
+    color: var(--text-color);
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.modalFooter {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.modalFooter .actionBtn {
+    flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .businessGrid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .componentCard {
+        padding: 1.25rem;
+    }
+    
+    .mainGrid {
+        padding: 1.5rem 0;
+    }
+    
+    .businessGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filterTabs {
+        flex-direction: column;
+    }
+
+    .modal {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .componentCard {
+        padding: 1rem;
+    }
+    
+    .businessFooter {
+        flex-direction: column;
+    }
+
+    .modalFooter {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .componentCard {
+        padding: 0.75rem;
+    }
+    
+    .mainGrid {
+        padding: 1rem 0;
+    }
+    
+    .businessHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .businessStatus {
+        align-self: flex-start;
+    }
+
+    .modalHeader,
+    .modalBody,
+    .modalFooter {
+        padding: 1rem;
+    }
+
+    .infoGrid {
+        grid-template-columns: 1fr;
+    }
+}

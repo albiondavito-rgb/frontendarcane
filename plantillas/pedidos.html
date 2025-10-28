@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos - E-Commerce Fusion Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary-color: #f59e0b;
+            --accent-color: #8b5cf6;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --info-color: #3b82f6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --primary-color: #818cf8;
+            --accent-color: #a78bfa;
+            --success-color: #34d399;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        
+        /* Header Styles */
+        .header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Nav Menu Cart Icon */
+        .nav-cart-icon {
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-muted);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-cart-icon:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--error-color);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0);
+            transition: transform 0.2s ease;
+        }
+
+        .cart-badge.visible {
+            transform: scale(1);
+        }
+
+        .theme-toggle {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0.6rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            width: 42px;
+            height: 42px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .theme-toggle:active {
+            transform: rotate(15deg) scale(0.95);
+        }
+
+        .auth-trigger {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-trigger::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .auth-trigger:hover::before {
+            left: 100%;
+        }
+
+        .auth-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-trigger:active {
+            transform: translateY(0);
+        }
+        
+        .main-grid { padding: 2rem 0; }
+        .component-card { background: var(--card-bg); border-radius: var(--border-radius); padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border-color); }
+        .component-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border-color); }
+        .component-title { font-size: 1.25rem; font-weight: 700; }
+
+        .filter-tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; background: var(--bg-color); padding: 6px; border-radius: 14px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); overflow-x: auto; }
+        .filter-tab { flex: 1; padding: 12px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; }
+        .filter-tab.active { background: var(--card-bg); color: var(--primary-color); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
+        .filter-tab:hover:not(.active) { color: var(--text-color); }
+
+        .orders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; }
+        .order-card { background: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow); border: 1px solid var(--border-color); transition: var(--transition); display: flex; flex-direction: column; }
+        .order-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        
+        .order-header { padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border-color); }
+        .order-title { font-size: 1.1rem; font-weight: 700; }
+        .order-id { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        
+        .order-status { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+        .status-pending { background: rgba(245, 158, 11, 0.15); color: var(--warning-color); }
+        .status-preparing { background: rgba(59, 130, 246, 0.15); color: var(--info-color); }
+        .status-shipping { background: rgba(16, 185, 129, 0.15); color: var(--success-color); }
+        .status-delivered { background: rgba(139, 92, 246, 0.15); color: var(--accent-color); }
+        .status-rejected { background: rgba(239, 68, 68, 0.15); color: var(--error-color); }
+
+        .order-body { padding: 1rem 1.25rem; flex-grow: 1; }
+        .order-detail { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .detail-icon { color: var(--primary-color); }
+        .detail-text { font-size: 0.95rem; }
+        .detail-label { font-weight: 600; color: var(--text-muted); font-size: 0.85rem; margin-right: 4px; }
+        
+        .product-list { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .product-item { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .product-name { color: var(--text-color); }
+        .product-price { color: var(--text-muted); }
+
+        .order-footer { padding: 1rem 1.25rem; border-top: 1px solid var(--border-color); }
+        .order-total { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
+        .total-label { color: var(--text-muted); }
+        .total-amount { color: var(--primary-color); }
+        
+        .order-actions { display: flex; gap: 0.75rem; }
+        .action-btn { flex: 1; padding: 10px 16px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .confirm-btn { background: var(--success-color); color: white; }
+        .reject-btn { background: var(--error-color); color: white; }
+        .ship-btn { background: var(--info-color); color: white; }
+        .deliver-btn { background: var(--accent-color); color: white; }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+        .empty-state { text-align: center; padding: 3rem 2rem; color: var(--text-muted); }
+        .empty-icon { width: 64px; height: 64px; margin: 0 auto 1rem; }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .orders-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i data-feather="shopping-bag"></i>
+                    E-Commerce Fusion
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Products</a>
+                    <a href="#" class="nav-link">Business</a>
+                    <a href="#" class="nav-link">Support</a>
+                    <button class="nav-cart-icon" id="navCartIcon">
+                        <i data-feather="shopping-cart"></i>
+                        <span class="cart-badge">0</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i data-feather="moon" id="themeIcon"></i>
+                    </button>
+                    <button class="auth-trigger" id="authTrigger">
+                        <i data-feather="user"></i>
+                        <span>Login</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="main-grid">
+            <div class="component-card">
+                <div class="component-header">
+                    <h2 class="component-title">Gestión de Pedidos</h2>
+                </div>
+                
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="pending"><i data-feather="clock"></i>Pendientes</button>
+                    <button class="filter-tab" data-filter="preparing"><i data-feather="box"></i>Preparando</button>
+                    <button class="filter-tab" data-filter="shipping"><i data-feather="truck"></i>Enviados</button>
+                    <button class="filter-tab" data-filter="delivered"><i data-feather="check-circle"></i>Entregados</button>
+                    <button class="filter-tab" data-filter="rejected"><i data-feather="x-circle"></i>Rechazados</button>
+                </div>
+                
+                <div class="orders-grid" id="ordersGrid">
+                    <!-- Las tarjetas de pedidos se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        feather.replace();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        function updateThemeIcon() {
+            const theme = html.getAttribute('data-theme');
+            document.getElementById('themeIcon').setAttribute('data-feather', theme === 'dark' ? 'sun' : 'moon');
+            feather.replace();
+        }
+        updateThemeIcon();
+        themeToggle.addEventListener('click', () => {
+            const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+        });
+
+        // Orders Data
+        let orders = [
+            { id: 1001, customer: "Ana López", date: "2025-10-15", status: "pending", items: [{ name: "Wireless Headphones Pro", qty: 1, price: 199.99 }], total: 199.99 },
+            { id: 1000, customer: "Jorge Pérez", date: "2025-10-14", status: "preparing", items: [{ name: "Smart Watch Series X", qty: 1, price: 299.50 }, { name: "Extra Strap", qty: 1, price: 50.00 }], total: 349.50 },
+            { id: 999, customer: "María Ruiz", date: "2025-10-12", status: "shipping", items: [{ name: "Laptop Ultra Pro", qty: 1, price: 1299.99 }], total: 1299.99 },
+            { id: 998, customer: "Carlos Gómez", date: "2025-10-10", status: "delivered", items: [{ name: "Gaming Mouse", qty: 1, price: 75.00 }], total: 75.00 },
+            { id: 997, customer: "Laura Díaz", date: "2025-10-09", status: "rejected", items: [{ name: "USB-C Cable", qty: 2, price: 25.00 }], total: 50.00 },
+            { id: 1002, customer: "Lucía Fernández", date: "2025-10-16", status: "pending", items: [{ name: "Tarjeta Gráfica RTX 4070", qty: 1, price: 650.00 }], total: 650.00 },
+        ];
+
+        const ordersGrid = document.getElementById('ordersGrid');
+        const filterTabs = document.querySelectorAll('.filter-tab');
+
+        const statusConfig = {
+            pending: { text: 'Pendiente', icon: 'clock', class: 'status-pending' },
+            preparing: { text: 'Preparando', icon: 'box', class: 'status-preparing' },
+            shipping: { text: 'Enviado', icon: 'truck', class: 'status-shipping' },
+            delivered: { text: 'Entregado', icon: 'check-circle', class: 'status-delivered' },
+            rejected: { text: 'Rechazado', icon: 'x-circle', class: 'status-rejected' }
+        };
+
+        function getActionButtons(order) {
+            switch (order.status) {
+                case 'pending':
+                    return `
+                        <button class="action-btn confirm-btn" onclick="updateOrderStatus(${order.id}, 'preparing')"><i data-feather="check"></i>Confirmar</button>
+                        <button class="action-btn reject-btn" onclick="updateOrderStatus(${order.id}, 'rejected')"><i data-feather="x"></i>Rechazar</button>
+                    `;
+                case 'preparing':
+                    return `<button class="action-btn ship-btn" onclick="updateOrderStatus(${order.id}, 'shipping')"><i data-feather="truck"></i>Enviar Pedido</button>`;
+                case 'shipping':
+                    return `<button class="action-btn deliver-btn" onclick="updateOrderStatus(${order.id}, 'delivered')"><i data-feather="check-circle"></i>Confirmar Llegada</button>`;
+                default:
+                    return '';
+            }
+        }
+
+        function renderOrders(filterStatus) {
+            ordersGrid.innerHTML = '';
+            const filteredOrders = orders.filter(order => order.status === filterStatus);
+
+            if (filteredOrders.length === 0) {
+                ordersGrid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon"><i data-feather="inbox" style="width: 64px; height: 64px;"></i></div>
+                        <h3>No hay pedidos en este estado</h3>
+                        <p>Cuando haya pedidos '${statusConfig[filterStatus].text}', aparecerán aquí.</p>
+                    </div>`;
+                feather.replace();
+                return;
+            }
+
+            filteredOrders.forEach(order => {
+                const card = document.createElement('div');
+                card.className = 'order-card';
+                const statusInfo = statusConfig[order.status];
+                
+                card.innerHTML = `
+                    <div class="order-header">
+                        <div>
+                            <h3 class="order-title">Pedido <span class="order-id">#${order.id}</span></h3>
+                        </div>
+                        <div class="order-status ${statusInfo.class}">
+                            <i data-feather="${statusInfo.icon}"></i>
+                            ${statusInfo.text}
+                        </div>
+                    </div>
+                    <div class="order-body">
+                        <div class="order-detail">
+                            <i data-feather="user" class="detail-icon"></i>
+                            <span class="detail-text"><span class="detail-label">Cliente:</span> ${order.customer}</span>
+                        </div>
+                        <div class="order-detail">
+                            <i data-feather="calendar" class="detail-icon"></i>
+                            <span class="detail-text"><span class="detail-label">Fecha:</span> ${order.date}</span>
+                        </div>
+                        <div class="product-list">
+                            ${order.items.map(item => `
+                                <div class="product-item">
+                                    <span class="product-name">${item.qty} x ${item.name}</span>
+                                    <span class="product-price">$${(item.qty * item.price).toFixed(2)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="order-footer">
+                        <div class="order-total">
+                            <span class="total-label">Total:</span>
+                            <span class="total-amount">$${order.total.toFixed(2)}</span>
+                        </div>
+                        <div class="order-actions">${getActionButtons(order)}</div>
+                    </div>
+                `;
+                ordersGrid.appendChild(card);
+            });
+            feather.replace();
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                const currentFilter = document.querySelector('.filter-tab.active').dataset.filter;
+                renderOrders(currentFilter);
+            }
+        }
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderOrders(tab.dataset.filter);
+            });
+        });
+
+        // Initial render
+        renderOrders('pending');
+    </script>
+</body>
+</html>

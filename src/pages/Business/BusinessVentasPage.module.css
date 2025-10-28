@@ -1,0 +1,314 @@
+/* Business Ventas Page */
+
+.ventasPage {
+    padding: 2rem;
+}
+
+.pageHeader {
+    margin-bottom: 2rem;
+}
+
+.pageTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.pageSubtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Estadísticas */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.statCard:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.statIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statInfo {
+    flex: 1;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.statValue {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Filtros */
+.filtersSection {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.searchBox {
+    position: relative;
+    flex: 1;
+    min-width: 280px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+}
+
+.filterSelect {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 180px;
+}
+
+.filterSelect:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.filterSelect:hover {
+    border-color: var(--primary-color);
+}
+
+/* Tabla */
+.tableCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.tableContainer {
+    overflow-x: auto;
+}
+
+.ventasTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ventasTable thead {
+    background: var(--bg-color);
+}
+
+.ventasTable th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ventasTable tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.ventasTable tbody tr:hover {
+    background: var(--bg-color);
+}
+
+.ventasTable td {
+    padding: 1rem;
+    color: var(--text-color);
+}
+
+.pedidoId {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.productoName {
+    font-weight: 500;
+}
+
+.cantidad {
+    text-align: center;
+    font-weight: 600;
+}
+
+.subtotal {
+    font-weight: 700;
+    color: var(--success-color);
+}
+
+.badge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge.completado {
+    background: var(--success-light);
+    color: var(--success-color);
+}
+
+.badge.entregado {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+/* Empty State */
+.emptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+}
+
+.emptyIcon {
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.emptyState h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.emptyState p {
+    font-size: 1rem;
+}
+
+/* Loading */
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+}
+
+.loadingContainer p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ventasPage {
+        padding: 1rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .filtersSection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .searchBox,
+    .filterGroup {
+        width: 100%;
+    }
+
+    .filterSelect {
+        width: 100%;
+    }
+
+    .tableContainer {
+        overflow-x: scroll;
+    }
+
+    .ventasTable {
+        min-width: 800px;
+    }
+}

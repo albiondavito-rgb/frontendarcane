@@ -1,0 +1,216 @@
+/* OrderDetailModal.module.css */
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.closeButton:hover {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.modalHeader {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.modalSubtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Order Info Header Card */
+.orderInfoCard {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.infoItem {
+    font-size: 0.95rem;
+}
+
+.infoLabel {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.infoValue {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.infoValue.highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Status Timeline */
+.timelineContainer {
+    position: relative;
+    padding-left: 25px; /* Space for the timeline line */
+}
+
+.timelineLine {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    background-color: var(--border-color);
+    border-radius: 3px;
+}
+
+.statusCard {
+    position: relative;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.statusCard::before {
+    content: '';
+    position: absolute;
+    left: -25px; /* Align with the container's padding */
+    top: 18px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    border: 3px solid var(--card-bg);
+}
+
+.statusHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.statusTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.statusDate {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.statusDescription {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Active/Completed Status Styling */
+.statusCard.active {
+    border-left: 5px solid;
+}
+
+.statusCard.active::before {
+    background-color: var(--primary-color);
+}
+
+.statusCard.completed::before {
+    background-color: var(--primary-light);
+}
+
+/* Specific Status Colors */
+.statusPendiente { border-color: var(--warning-color); }
+.statusPendiente .statusTitle { color: var(--warning-color); }
+.statusPendiente.active::before { background-color: var(--warning-color); }
+
+.statusConfirmado { border-color: var(--info-color, #3b82f6); }
+.statusConfirmado .statusTitle { color: var(--info-color, #3b82f6); }
+.statusConfirmado.active::before { background-color: var(--info-color, #3b82f6); }
+
+.statusEnviado { border-color: var(--accent-color); }
+.statusEnviado .statusTitle { color: var(--accent-color); }
+.statusEnviado.active::before { background-color: var(--accent-color); }
+
+.statusEntregado { border-color: var(--success-color); }
+.statusEntregado .statusTitle { color: var(--success-color); }
+.statusEntregado.active::before { background-color: var(--success-color); }
+
+.statusRechazado { border-color: var(--error-color); }
+.statusRechazado .statusTitle { color: var(--error-color); }
+.statusRechazado.active::before { background-color: var(--error-color); }
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .modalContent {
+        padding: 1.5rem;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+    }
+}

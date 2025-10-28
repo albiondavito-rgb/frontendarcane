@@ -1,0 +1,40 @@
+.categoryCard {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    width: 200px; /* Ancho fijo para las tarjetas de categoría */
+    height: 250px;
+    flex-shrink: 0; /* Evita que flexbox encoja los items */
+}
+
+.categoryCard:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+}
+
+.categoryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.categoryCard:hover .categoryImage {
+    transform: scale(1.1);
+}
+
+.categoryName {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    transition: var(--transition);
+}

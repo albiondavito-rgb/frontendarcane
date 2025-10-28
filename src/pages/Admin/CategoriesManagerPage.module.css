@@ -1,0 +1,774 @@
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.componentCard {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.componentCard:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.componentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.componentTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 12px;
+}
+
+.componentTitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+}
+
+/* Category Management Styles */
+.categoryManagementToolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.searchCreateContainer {
+    display: flex;
+    flex: 1;
+    min-width: 300px;
+    gap: 1rem;
+}
+
+.searchBar {
+    position: relative;
+    flex: 1;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.searchIcon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.createBtn {
+    background: var(--card-bg);
+    color: var(--success-color);
+    border: 2px solid var(--success-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.createBtn:hover {
+    background: var(--success-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.categoryManagementGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+}
+
+.managementCategoryCard {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.managementCategoryCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.managementCategoryImage {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.managementCategoryInfo {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.managementCategoryTitle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.managementCategoryActions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.btnEdit {
+    flex: 1;
+    padding: 0.5rem;
+    background: var(--card-bg);
+    color: var(--success-color);
+    border: 2px solid var(--success-color);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+}
+
+.btnEdit:hover {
+    background: var(--success-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btnDelete {
+    flex: 1;
+    padding: 0.5rem;
+    background: var(--card-bg);
+    color: var(--error-color);
+    border: 2px solid var(--error-color);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+}
+
+.btnDelete:hover {
+    background: var(--error-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btnActivate {
+    flex: 1;
+    padding: 0.5rem;
+    background: var(--card-bg);
+    color: var(--success-color);
+    border: 2px solid var(--success-color);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+}
+
+.btnActivate:hover {
+    background: var(--success-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.confirming {
+    background: var(--error-dark) !important;
+    border-color: var(--error-dark) !important;
+    color: white !important;
+    animation: pulse-red 1.5s infinite;
+}
+
+/* Status badges */
+.statusBadge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.statusActive {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.statusInactive {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+/* Inactive card styling */
+.inactiveCard {
+    opacity: 0.6;
+    border: 2px dashed var(--error-color) !important;
+}
+
+.inactiveCard .managementCategoryImage {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.btnSaving {
+    background: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+    color: white !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btnSaving::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.btnSaved {
+    background: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+    color: white !important;
+    animation: pulse-green 1s;
+}
+
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modalOverlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.categoryModal {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 320px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modalOverlay.active .categoryModal {
+    transform: translateY(0) scale(1);
+}
+
+.modalHeader {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.closeModal {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.closeModal:hover {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.modalBody {
+    padding: 1.25rem;
+}
+
+.formGroup {
+    margin-bottom: 1.25rem;
+}
+
+.formLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.formInput, .formTextarea, .formSelect {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.formInput:focus, .formTextarea:focus, .formSelect:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.formTextarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.imageUploadSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.imageUploadContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.imageUploadArea {
+    width: 100%;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.imageUploadArea:hover {
+    border-color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.imageUploadArea.dragOver {
+    border-color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.imageUploadIcon {
+    font-size: 2rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.imageUploadText {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.imageUploadBtn {
+    background: var(--card-bg);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.imageUploadBtn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.imagePreviewContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.previewImage {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.previewActions {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.btnChangeImage {
+    flex: 1;
+    background: var(--card-bg);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.btnChangeImage:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btnRemoveImage {
+    flex: 1;
+    background: var(--card-bg);
+    color: var(--error-color);
+    border: 2px solid var(--error-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.btnRemoveImage:hover {
+    background: var(--error-color);
+    color: white;
+}
+
+.modalFooter {
+    padding: 1.25rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.btnCancel {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.btnCancel:hover {
+    background: var(--bg-color);
+    border-color: var(--text-muted);
+}
+
+.btnSave {
+    background: var(--success-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+}
+
+.btnSave:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .categoryManagementGrid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .categoryManagementGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .categoryManagementGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .categoryManagementToolbar {
+        flex-direction: column;
+    }
+    
+    .searchCreateContainer {
+        min-width: 100%;
+    }
+    
+    .imageUploadContainer {
+        flex-direction: column;
+    }
+    
+    .categoryManagementGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .componentCard {
+        padding: 1.25rem;
+    }
+    
+    .mainGrid {
+        padding: 1.5rem 0;
+    }
+    
+    .categoryManagementGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .modalBody {
+        padding: 1rem;
+    }
+    
+    .modalHeader, .modalFooter {
+        padding: 1rem 1.25rem;
+    }
+    
+    .imageUploadArea {
+        min-height: 120px;
+        padding: 1rem;
+    }
+    
+    .imagePreviewContainer {
+        align-items: center !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .categoryManagementGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .componentHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .managementCategoryActions {
+        flex-direction: column;
+    }
+    
+    .modalFooter {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .componentCard {
+        padding: 1rem;
+    }
+    
+    .mainGrid {
+        padding: 1rem 0;
+    }
+    
+    .searchCreateContainer {
+        flex-direction: column;
+    }
+    
+    .previewActions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btnChangeImage, .btnRemoveImage {
+        width: 100%;
+    }
+    
+    .categoryModal {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 360px) {
+    .componentCard {
+        padding: 0.75rem;
+    }
+    
+    .categoryManagementGrid {
+        gap: 0.75rem;
+    }
+    
+    .imageUploadArea {
+        padding: 0.75rem;
+    }
+    
+    .categoryModal {
+        max-width: 260px;
+    }
+}
+.btnSaving {
+    background: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+    color: white !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btnSaving::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.spinnerIcon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

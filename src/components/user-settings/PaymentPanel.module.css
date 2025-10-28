@@ -1,0 +1,133 @@
+.savedCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.savedCard:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.cardInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cardIcon {
+    color: var(--text-muted);
+}
+
+.cardDetails {
+    font-weight: 500;
+}
+
+.cardNumber {
+    color: var(--text-color);
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.cardExp {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.deleteBtn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.deleteBtn:hover {
+    color: var(--error-color);
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.addCardBtn {
+    width: 100%;
+    padding: 1rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.addCardBtn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.loading,
+.error {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Estilos para la confirmación en línea */
+.deleteContainer {
+    min-width: 80px; /* Asegura espacio para los botones */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirmActions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.confirmActionBtn {
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.confirmBtn {
+    color: var(--success-color, #10B981);
+}
+
+.confirmBtn:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color-dark, #059669);
+}
+
+.cancelBtn {
+    color: var(--error-color, #EF4444);
+}
+
+.cancelBtn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color-dark, #DC2626);
+}

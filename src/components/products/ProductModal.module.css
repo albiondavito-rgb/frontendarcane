@@ -1,0 +1,430 @@
+/* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+}
+
+.modalOverlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.productModal {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    position: relative;
+}
+
+.modalOverlay.active .productModal {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modalClose {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.modalClose:hover {
+    background: var(--error-light);
+    color: var(--error-color);
+}
+
+.modalContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.modalLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modalProductImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.modalSectionTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modalDescriptionBox {
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.modalRight {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modalCategory {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modalProductName {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modalRating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.modalStars {
+    color: var(--secondary-color);
+    display: flex;
+    gap: 2px;
+}
+
+.modalReviewsCount {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.modalBusiness {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+}
+
+.modalStock {
+    font-size: 0.9rem;
+    color: var(--success-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.modalPrice {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.modalQuantityControl {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.modalQuantityLabel {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.modalQuantitySelector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modalQuantityBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.modalQuantityBtn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.modalQuantityBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.modalQuantityValue {
+    position: relative;
+    width: 60px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.modalQuantityValue::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.modalActionButtons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.modalCartBtn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.modalCartBtn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.modalCartBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.modalBuyBtn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.modalBuyBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.modalBuyBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* New container for price and quantity */
+.priceQuantityContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Reviews Section */
+.modalReviewsContainer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.modalReviewsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modalReviewCard {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.modalReviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.modalReviewUser {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.modalReviewStars {
+    color: var(--secondary-color);
+    display: flex;
+    gap: 2px;
+}
+
+.modalReviewText {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.modalReviewDate {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.modalReviewsToggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+}
+
+.modalReviewsToggle:hover {
+    background: var(--bg-color);
+    border-color: var(--primary-color);
+}
+
+.modalAdditionalReviews {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.noReviews {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.noReviews p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modalContent {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .modalProductImage {
+        height: 250px;
+    }
+
+    .modalProductName {
+        font-size: 1.5rem;
+    }
+
+    .modalPrice {
+        font-size: 1.75rem;
+    }
+
+    .modalActionButtons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .modalContent {
+        padding: 1rem;
+    }
+
+    .modalProductName {
+        font-size: 1.25rem;
+    }
+
+    .modalPrice {
+        font-size: 1.5rem;
+    }
+}

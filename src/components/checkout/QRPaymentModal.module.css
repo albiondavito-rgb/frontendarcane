@@ -1,0 +1,268 @@
+/* Modal de Pago QR */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modalContent {
+    background: var(--card-bg);
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    z-index: 1;
+}
+
+.closeBtn:hover {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.modalHeader {
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.timer {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary-color);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.modalBody {
+    padding: 2rem;
+}
+
+.qrContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.qrCode {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.qrPattern {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.qrRow {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+}
+
+.qrCell {
+    flex: 1;
+    border-radius: 1px;
+}
+
+.qrLabel {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.paymentInfo {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.infoRow:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.infoLabel {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.infoValue {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.instructions {
+    background: rgba(var(--primary-rgb), 0.05);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.instructions p {
+    margin: 0.5rem 0;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.simulationBtns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.btnSuccess, .btnError {
+    padding: 0.875rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    font-size: 1rem;
+}
+
+.btnSuccess {
+    background: #10b981;
+    color: white;
+}
+
+.btnSuccess:hover:not(:disabled) {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btnError {
+    background: transparent;
+    color: #ef4444;
+    border: 2px solid #ef4444;
+}
+
+.btnError:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.btnSuccess:disabled, .btnError:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modalContent {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .qrPattern {
+        width: 180px;
+        height: 180px;
+    }
+
+    .modalHeader {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+
+    .modalBody {
+        padding: 1.5rem;
+    }
+}

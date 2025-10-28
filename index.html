@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPONET</title>
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        } else {
+          // Fallback to light theme if nothing is set
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <style>
+      /* Define base colors to prevent flash */
+      html[data-theme="light"] {
+        --bg-color-initial: #f8fafc; /* --bg-color from :root */
+      }
+      html[data-theme="dark"] {
+        --bg-color-initial: #0f172a; /* --bg-color from [data-theme="dark"] */
+      }
+      body {
+        background-color: var(--bg-color-initial);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="modal-root"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+.aiChat {
+    position: fixed;
+    right: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-xl);
+    z-index: 100;
+    border: none;
+    transition: var(--transition);
+}
+
+.aiChat:hover {
+    transform: scale(1.15);
+}
+
+/* Chat Modal */
+.chatOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.chatOverlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.chatModal {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease;
+    position: relative; /* Add relative positioning */
+}
+
+.resizeHandle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    cursor: nwse-resize;
+    z-index: 10;
+}
+
+.chatOverlay.active .chatModal {
+    transform: translateY(0) scale(1);
+}
+
+.chatHeader {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.chatTitle {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.closeChat {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.closeChat:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.chatMessages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Estilos para Markdown */
+.message p {
+    margin: 0.5rem 0;
+}
+
+.message strong {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.message ul, .message ol {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.message li {
+    margin: 0.25rem 0;
+}
+
+.message a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.message a:hover {
+    color: var(--accent-color);
+}
+
+.message h1, .message h2, .message h3, .message h4, .message h5, .message h6 {
+    margin: 0.75rem 0 0.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.message code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.85em;
+}
+
+.message pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    margin: 0.75rem 0;
+}
+
+.message pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.message.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+}
+
+.chatInputContainer {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.chatInput {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.chatInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.sendBtn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Indicador de escritura */
+.typing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    min-height: 30px;
+    padding: 0.5rem 1rem;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    margin: 0 3px;
+    opacity: 0.6;
+    animation: dotPulse 1.5s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .chatOverlay {
+        padding: 0;
+    }
+    .chatModal {
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+    }
+}

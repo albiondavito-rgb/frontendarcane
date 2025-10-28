@@ -1,0 +1,71 @@
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 240px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    padding: 0.75rem 0;
+    margin-top: 0.5rem;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdownMenu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menuList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.menuItem:hover {
+    background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+.separator {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.5rem 0;
+}
+
+.logoutWrapper {
+    padding: 0; /* Reset padding for the wrapper */
+}
+
+.logoutButton {
+    /* Inherits from menuItem but we can add specifics */
+    color: var(--error-color);
+}
+
+.logoutButton:hover {
+    color: white;
+    background: var(--error-color);
+}

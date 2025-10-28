@@ -1,0 +1,163 @@
+/* Estilos para la sección de historial de compras */
+.settingsSection {
+  padding: 2rem;
+  background-color: var(--background-color-light);
+  border-radius: 8px;
+}
+
+.settingsSectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.historyTable {
+  width: 100%;
+  text-align: left;
+  font-size: 0.95rem;
+  border-collapse: separate;
+  border-spacing: 0 0.8rem;
+}
+
+.historyTable thead {
+  background-color: transparent;
+}
+
+.historyTable th {
+  padding: 12px 15px;
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.historyRow {
+  cursor: pointer;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.historyRow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.historyRow td {
+  padding: 20px 15px;
+  background-color: var(--background-color-main);
+  color: var(--text-color-primary);
+  border: 1px solid var(--border-color);
+  border-width: 1px 0;
+}
+
+.historyRow td:first-child {
+  border-left-width: 1px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.historyRow td:last-child {
+  border-right-width: 1px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.iconColumn {
+  width: 50px;
+}
+
+.chevron {
+  display: inline-block;
+  border-right: 3px solid var(--text-color-secondary);
+  border-bottom: 3px solid var(--text-color-secondary);
+  width: 8px;
+  height: 8px;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.chevronExpanded {
+  transform: rotate(45deg);
+}
+
+.expandedRow td {
+  padding: 0;
+  border: none;
+}
+
+/* --- NUEVO LAYOUT PARA EL CARD DESPLEGABLE --- */
+.expandedCard {
+  padding: 1.5rem 2rem;
+  background-color: var(--background-color-dark);
+  animation: fadeIn 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column; /* Layout vertical */
+  align-items: stretch; /* Hijos ocupan todo el ancho */
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+}
+
+.cardItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardItem strong {
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+}
+
+.cardItem span {
+  font-size: 1rem;
+  color: var(--text-color-primary);
+}
+
+/* --- NUEVO DISEÑO DE BOTÓN 'ENLACE DE ACCIÓN' --- */
+.detailsButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  align-self: flex-end; /* Alineado a la derecha */
+  margin-top: 1.5rem; /* Espacio respecto a la información */
+  transition: transform 0.2s ease-out;
+}
+
+.detailsButton::after {
+  content: ' →'; /* Flecha para indicar acción */
+  transition: margin-left 0.2s ease-out;
+}
+
+.detailsButton:hover {
+  transform: translateX(2px);
+}
+
+.detailsButton:hover::after {
+  margin-left: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

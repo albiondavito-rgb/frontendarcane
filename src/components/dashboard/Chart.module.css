@@ -1,0 +1,23 @@
+.chartContainer {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.chartContainer:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.chartTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--text-color);
+}
